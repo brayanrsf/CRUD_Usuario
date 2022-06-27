@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class = "row">
+    <div class = "col-md-5">
+        {% include 'partials/_userForm.html' %}
+
+        {% include 'partials/_messages.html' %}
+    </div>
+
+    <div class = "col-md-7">
+        {% for usuario in usuarios %}
+
+        <div class = "card mb-1 text-white bg-dark">
+            <div class = "card-body">
+                <div class = "d-flex justify-content-between">
+                    <h5>{{usuario.nombre}} {{usuario.apellido}}</h5>                 
+                    <div>
+                        <a href = "{{url_for('usuarios.update_user', id = usuario.id)}}" class = "btn btn-warning btn-sm">Actualizar</a>
+                        <a href = "{{url_for('usuarios.delete_user', id = usuario.id)}}" class = "btn btn-danger btn-sm">Eliminar</a>
+                    </div>
+                </div>
+                <p>{{usuario.username}}</p>
+                <p>{{usuario.password}}</p> 
+            </div>             
+        </div>     
+        {% endfor %}
+    </div>
+
+</div>    
+
+{% endblock %}
